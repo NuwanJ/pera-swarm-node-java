@@ -1,5 +1,6 @@
 package swarm;
 
+import robotImplementations.ExperimentRobot;
 import swarm.configs.MQTTSettings;
 import swarm.robot.Robot;
 import swarm.robot.VirtualRobot;
@@ -37,9 +38,10 @@ public class Swarm extends Thread {
             MQTTSettings.channel = props.getProperty("channel", "v1");
             reader.close();
 
-            obstacleAvoidingExperiment();
+            // obstacleAvoidingExperiment();
             // colorRippleExperiment();
             // discoverColorExperiment();
+            communicationExperiment();
 
         } catch (FileNotFoundException ex) {
             // file does not exist
@@ -50,6 +52,33 @@ public class Swarm extends Thread {
             System.out.println("IO Error !!!");
         }
     }
+
+    private static void communicationExperiment() {
+        // Note: 0,1,2,6 and 7 are ignored; hardware robots
+        int[] robotList = {0, 1, 2, 6, 7, 10, 11, 12, 13, 14};
+//        circularFormation(robotList, 0, 0, 0, 30, 0, 36);
+
+        Robot[] vr = new VirtualRobot[robotList.length];
+        int x, y, robotHeading;
+        int radius = 30;
+        int deltaAngle = 36;
+
+        for (int i = 0; i < robotList.length; i++) {
+            double a = (deltaAngle + i * deltaAngle);
+            x = (int) (radius * Math.cos(a * Math.PI / 180));
+            y = (int) (radius * Math.sin(a * Math.PI / 180));
+            robotHeading = (int) (a) + 90;
+
+            if (robotList[i] == 0 || robotList[i] == 1 || robotList[i] == 2 || robotList[i] == 6 | robotList[i] == 7) {
+                System.out.println(i + "> x:" + x + " y:" + y + " heading:" + robotHeading);
+            } else {
+                vr[i] = new ExperimentRobot(robotList[i], x, y, robotHeading);
+                new Thread(vr[i]).start();
+            }
+
+        }
+    }
+
 
     private static void obstacleAvoidingExperiment() {
 
@@ -122,7 +151,7 @@ public class Swarm extends Thread {
             y = (int) (radius * Math.sin(a * Math.PI / 180));
             robotHeading = (int) (a + headingOffset);
 
-            if (i == 0 || i == 1 || i == 2 || i == 6 | i == 7) {
+            if (robotList[i] == 0 || robotList[i] == 1 || robotList[i] == 2 || robotList[i] == 6 | robotList[i] == 7) {
                 System.out.println(i + "> x:" + x + " y:" + y + " heading:" + robotHeading);
             } else {
                 vr[i] = new ColorRippleRobot(robotList[i], x, y, robotHeading);

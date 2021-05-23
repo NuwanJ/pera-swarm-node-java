@@ -18,7 +18,7 @@ public class ObstacleAvoidRobot extends VirtualRobot {
         if(state==robotState.RUN) {
             double dist = distSensor.getDistance();
 
-            if (dist < 15) {
+            if (dist < 25) {
 
                 // Generate a random number in [-1000,1000] range
                 // if even, rotate CW, otherwise rotate CCW an angle depends on the random number
@@ -32,7 +32,7 @@ public class ObstacleAvoidRobot extends VirtualRobot {
 
                 // rotate
                 int loopCount = 0; // to avoid infinity loop
-                while (distSensor.getDistance() < 35 && loopCount < 5) {
+                while (distSensor.getDistance() < 25 && loopCount < 5) {
                     motion.rotate(50 * sign, 1000);
                     loopCount++;
                 }
