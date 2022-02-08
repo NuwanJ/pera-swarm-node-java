@@ -55,16 +55,18 @@ public class Swarm extends Thread {
 
         Robot[] vr = new VirtualRobot[5];
 
-        vr[0] = new ObstacleAvoidRobot(10, -52, 32, 45);
-        vr[1] = new ObstacleAvoidRobot(11, -32, -12, -20);
-        vr[2] = new ObstacleAvoidRobot(12, 55, -23, 3);
-        vr[3] = new ObstacleAvoidRobot(13, 54, 65, -70);
-        vr[4] = new ObstacleAvoidRobot(14, -30, -40, 105);
-
-        for (Robot robot : vr) {
-//            vr[i] = new ObstacleAvoidRobot(robotList[i], -50 + 25 * i, 0, 90);
-            new Thread(robot).start();
-        }
+//        vr[0] = new ObstacleAvoidRobot(10, -52, 32, 45);
+//        vr[1] = new ObstacleAvoidRobot(11, -32, -12, -20);
+//        vr[2] = new ObstacleAvoidRobot(12, 55, -23, 3);
+//        vr[3] = new ObstacleAvoidRobot(13, 54, 65, -70);
+//        vr[4] = new ObstacleAvoidRobot(14, -30, -40, 105);
+//
+//        for (Robot robot : vr) {
+//            // vr[i] = new ObstacleAvoidRobot(robotList[i], -50 + 25 * i, 0, 90);
+//            new Thread(robot).start();
+//        }
+        int[] robotList = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};
+        circularFormation(robotList, 0, 0, 0, 150, 0, 15);
 
     }
 
@@ -120,15 +122,13 @@ public class Swarm extends Thread {
             double a = (startAngle + i * deltaAngle);
             x = (int) (radius * Math.cos(a * Math.PI / 180));
             y = (int) (radius * Math.sin(a * Math.PI / 180));
-            robotHeading = (int) (a + headingOffset);
 
-            if (i == 0 || i == 1 || i == 2 || i == 6 | i == 7) {
-                System.out.println(i + "> x:" + x + " y:" + y + " heading:" + robotHeading);
-            } else {
-                vr[i] = new ColorRippleRobot(robotList[i], x, y, robotHeading);
-                // vr[i] = new ObstacleAvoidRobot(robotList[i], x, y, robotHeading);
-                new Thread(vr[i]).start();
-            }
+            // heading into a random direction
+            robotHeading = (int) (a + headingOffset + Math.random() * 360 - 180);
+
+            vr[i] = new ObstacleAvoidRobot(robotList[i], x, y, robotHeading);
+            // vr[i] = new ObstacleAvoidRobot(robotList[i], x, y, robotHeading);
+            new Thread(vr[i]).start();
 
         }
     }

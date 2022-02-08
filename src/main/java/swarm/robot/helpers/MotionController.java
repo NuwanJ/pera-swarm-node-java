@@ -3,7 +3,6 @@ package swarm.robot.helpers;
 import swarm.configs.RobotSettings;
 import swarm.robot.exception.MotionControllerException;
 
-
 public class MotionController {
 
     // This is the maximum interval allowed to coordinate calculation, smaller values increase the smoothness of the movement

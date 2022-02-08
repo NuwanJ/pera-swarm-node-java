@@ -18,7 +18,9 @@ public class ObstacleAvoidRobot extends VirtualRobot {
         if(state==robotState.RUN) {
             double dist = distSensor.getDistance();
 
-            if (dist < 15) {
+            if (dist < 30) {
+                // Mark as red
+                neoPixel.changeColor(255, 0, 0);
 
                 // Generate a random number in [-1000,1000] range
                 // if even, rotate CW, otherwise rotate CCW an angle depends on the random number
@@ -36,17 +38,20 @@ public class ObstacleAvoidRobot extends VirtualRobot {
                     motion.rotate(50 * sign, 1000);
                     loopCount++;
                 }
+
                 // TODO: This is a temp update to restrict the robot into arena
-                // if (coordinates.getX() >= 90) coordinates.setX(85);
-                // if (coordinates.getX() <= -90) coordinates.setX(-85);
-                // if (coordinates.getY() >= 90) coordinates.setY(85);
-                // if (coordinates.getY() <= -90) coordinates.setY(-85);
+                 if (coordinates.getX() >= 300) coordinates.setX(290);
+                 if (coordinates.getX() <= -300) coordinates.setX(-290);
+                 if (coordinates.getY() >= 300) coordinates.setY(290);
+                 if (coordinates.getY() <= -300) coordinates.setY(-290);
 
                 // rotate a little
-                motion.rotate(50 * sign, 500);
+                motion.rotate(80 * sign, 500);
 
             } else {
-                motion.move(100, 100, 1000);
+                // Mark as black
+                neoPixel.changeColor(0, 0, 0);
+                motion.move(150, 150, 1000);
             }
         }
     }
