@@ -21,3 +21,9 @@ username=user
 password=pass
 channel="v1"
 ```
+
+### Build and release
+
+Please refer following documents for the instructions:
+- [How to Export a JAR from IntelliJ](https://lightrun.com/java/how-to-export-a-jar-from-intellij/)
+- Use *Export a JAR Using the Build Artifact Method*

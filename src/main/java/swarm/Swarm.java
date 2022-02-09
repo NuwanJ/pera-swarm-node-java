@@ -55,18 +55,22 @@ public class Swarm extends Thread {
 
         Robot[] vr = new VirtualRobot[5];
 
-//        vr[0] = new ObstacleAvoidRobot(10, -52, 32, 45);
-//        vr[1] = new ObstacleAvoidRobot(11, -32, -12, -20);
-//        vr[2] = new ObstacleAvoidRobot(12, 55, -23, 3);
-//        vr[3] = new ObstacleAvoidRobot(13, 54, 65, -70);
-//        vr[4] = new ObstacleAvoidRobot(14, -30, -40, 105);
-//
-//        for (Robot robot : vr) {
-//            // vr[i] = new ObstacleAvoidRobot(robotList[i], -50 + 25 * i, 0, 90);
-//            new Thread(robot).start();
-//        }
-        int[] robotList = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};
-        circularFormation(robotList, 0, 0, 0, 150, 0, 15);
+        //        vr[0] = new ObstacleAvoidRobot(10, -52, 32, 45);
+        //        vr[1] = new ObstacleAvoidRobot(11, -32, -12, -20);
+        //        vr[2] = new ObstacleAvoidRobot(12, 55, -23, 3);
+        //        vr[3] = new ObstacleAvoidRobot(13, 54, 65, -70);
+        //        vr[4] = new ObstacleAvoidRobot(14, -30, -40, 105);
+        //
+        //        for (Robot robot : vr) {
+        //            // vr[i] = new ObstacleAvoidRobot(robotList[i], -50 + 25 * i, 0, 90);
+        //            new Thread(robot).start();
+        //        }
+//        int[] robotList = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};
+
+        int[] robotList = new int[36];
+        for(int i=0;i<36;i++) robotList[i] = i;
+
+        circularFormation(robotList, 0, 0, 0, 150, 0, 10);
 
     }
 
@@ -92,11 +96,11 @@ public class Swarm extends Thread {
         vr[3] = new DiscoverColorRobot(13, 54, 65, -70, obstacleColor);
         vr[4] = new DiscoverColorRobot(14, 0, -40, 105, obstacleColor);
 
-//        vr[5] = new DiscoverColorRobot(0, 80, 20, 90, obstacleColor);
-//        vr[6] = new DiscoverColorRobot(1, 40, -80, -90, obstacleColor);
-//        vr[7] = new DiscoverColorRobot(2, -40, -70, 45, obstacleColor);
-//        vr[8] = new DiscoverColorRobot(6, -50, -50, -90, obstacleColor);
-//        vr[9] = new DiscoverColorRobot(7, -70, 0, -45, obstacleColor);
+        //        vr[5] = new DiscoverColorRobot(0, 80, 20, 90, obstacleColor);
+        //        vr[6] = new DiscoverColorRobot(1, 40, -80, -90, obstacleColor);
+        //        vr[7] = new DiscoverColorRobot(2, -40, -70, 45, obstacleColor);
+        //        vr[8] = new DiscoverColorRobot(6, -50, -50, -90, obstacleColor);
+        //        vr[9] = new DiscoverColorRobot(7, -70, 0, -45, obstacleColor);
 
         //robots start to move
         for (Robot robot : vr) {
